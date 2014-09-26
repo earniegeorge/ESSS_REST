@@ -115,3 +115,32 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+//added by George
+//configuration options for database rev eng plugin
+//switch on and off when generating domains
+//make sure to turn off runtime hibernate libraries when running this plugin
+//script: db-reverse-engineer
+
+grails.plugin.reveng.packageName = 'unity'
+grails.plugin.reveng.includeTables = [
+//full
+'account_csa_applications',
+'account_ida_applications',
+'accounts',
+'csa_applications',
+'docs',
+//'esss_sec_role'
+//'esss_sec_user_sec_role'
+'ethnicities',
+'ida_applications',
+'languages',
+'registration_code',
+'transactions',
+'tripleboost_application_child_survey',
+'tripleboost_exit_surveys',
+'users',
+'withdrawal_requests'
+]
+

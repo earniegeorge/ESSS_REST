@@ -56,6 +56,12 @@ grails.project.dependency.resolution = {
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.54"
+		
+		//plugins added by George
+		// plugin to engineer domain classes from database
+		// for some reason this is derpy and doesn't work in conjunction to hibernate, so
+			//we have to comment this out when not using it. Look in config for more settings!
+		compile ':db-reverse-engineer:0.5'
 
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
@@ -63,8 +69,8 @@ grails.project.dependency.resolution = {
         compile ":asset-pipeline:1.8.11"
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
-        runtime ":database-migration:1.4.0"
+        //runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
+        //runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 
         // Uncomment these to enable additional asset-pipeline capabilities
