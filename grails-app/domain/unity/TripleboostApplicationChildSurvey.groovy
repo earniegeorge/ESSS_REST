@@ -25,7 +25,7 @@ class TripleboostApplicationChildSurvey {
 	}
 
 	static constraints = {
-		childNumber unique: ["earn_application_id"]
+		childNumber unique: ["earnApplicationId"]
 		firstName maxSize: 64
 		lastName nullable: true, maxSize: 64
 		dob nullable: true

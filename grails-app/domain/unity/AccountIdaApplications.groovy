@@ -11,6 +11,6 @@ class AccountIdaApplications {
 	}
 
 	static constraints = {
-		earnAccountId unique: ["earn_application_id"]
+		earnAccountId unique: ["earnApplicationId"]
 	}
 }

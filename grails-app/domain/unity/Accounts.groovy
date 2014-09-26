@@ -26,15 +26,16 @@ class Accounts {
 	Date earnAccountClosedDate
 	String earnAccountClosedReason
 	Integer incentiveGroup
-	String incentiveFunder1
-	Integer incentiveFunder1Percent
-	Integer incentiveFunder1GlNumber
-	String incentiveFunder2
-	Integer incentiveFunder2Percent
-	Integer incentiveFunder2GlNumber
-	String incentiveFunder3
-	Integer incentiveFunder3Percent
-	Integer incentiveFunder3GlNumber
+	//following changed because of formatting issues
+	String incentive_funder_1
+	Integer incentive_funder_1_percent
+	Integer incentive_funder_1_gl_number
+	String incentive_funder_2
+	Integer incentive_funder_2_percent
+	Integer incentive_funder_2_gl_number
+	String incentive_funder_3
+	Integer incentive_funder_3_percent
+	Integer incentive_funder_3_gl_number
 	String administrativePartner
 	String administrativePartnerContactPerson
 	String administrativePartnerAddress
@@ -43,15 +44,6 @@ class Accounts {
 	String administrativePartnerZipCode
 	String administrativePartnerPhone
 	String administrativePartnerEmail
-	String incentiveFunder1_1
-	Integer incentiveFunder1glNumber
-	Integer incentiveFunder1percent
-	String incentiveFunder2_1
-	Integer incentiveFunder2glNumber
-	Integer incentiveFunder2percent
-	String incentiveFunder3_1
-	Integer incentiveFunder3glNumber
-	Integer incentiveFunder3percent
 
 	static mapping = {
 		version false
@@ -81,15 +73,15 @@ class Accounts {
 		earnAccountClosedDate nullable: true
 		earnAccountClosedReason nullable: true, maxSize: 128
 		incentiveGroup nullable: true
-		incentiveFunder1 nullable: true, maxSize: 64
-		incentiveFunder1Percent nullable: true
-		incentiveFunder1GlNumber nullable: true
-		incentiveFunder2 nullable: true, maxSize: 64
-		incentiveFunder2Percent nullable: true
-		incentiveFunder2GlNumber nullable: true
-		incentiveFunder3 nullable: true, maxSize: 64
-		incentiveFunder3Percent nullable: true
-		incentiveFunder3GlNumber nullable: true
+		incentive_funder_1 nullable: true, maxSize: 64
+		incentive_funder_1_percent nullable: true
+		incentive_funder_1_gl_number nullable: true
+		incentive_funder_2 nullable: true, maxSize: 64
+		incentive_funder_2_percent nullable: true
+		incentive_funder_2_gl_number nullable: true
+		incentive_funder_3 nullable: true, maxSize: 64
+		incentive_funder_3_percent nullable: true
+		incentive_funder_3_gl_number nullable: true
 		administrativePartner nullable: true, maxSize: 32
 		administrativePartnerContactPerson nullable: true, maxSize: 64
 		administrativePartnerAddress nullable: true, maxSize: 64
@@ -98,14 +90,14 @@ class Accounts {
 		administrativePartnerZipCode nullable: true, maxSize: 5
 		administrativePartnerPhone nullable: true, maxSize: 128
 		administrativePartnerEmail nullable: true, maxSize: 64
-		incentiveFunder1_1 nullable: true, maxSize: 64
-		incentiveFunder1glNumber nullable: true
-		incentiveFunder1percent nullable: true
-		incentiveFunder2_1 nullable: true, maxSize: 64
-		incentiveFunder2glNumber nullable: true
-		incentiveFunder2percent nullable: true
-		incentiveFunder3_1 nullable: true, maxSize: 64
-		incentiveFunder3glNumber nullable: true
-		incentiveFunder3percent nullable: true
+//		incentiveFunder1_1 nullable: true, maxSize: 64
+//		incentiveFunder1glNumber nullable: true
+//		incentiveFunder1percent nullable: true
+//		incentiveFunder2_1 nullable: true, maxSize: 64
+//		incentiveFunder2glNumber nullable: true
+//		incentiveFunder2percent nullable: true
+//		incentiveFunder3_1 nullable: true, maxSize: 64
+//		incentiveFunder3glNumber nullable: true
+//		incentiveFunder3percent nullable: true
 	}
 }
