@@ -16,7 +16,8 @@ stacktrace.log
 /.link_to_grails_plugins/
 /target-eclipse/
 /grails-app/conf/DataSource.groovy
-/grails-app/conf/Config.groovy
+# not sure why we didn't want config before...
+# /grails-app/conf/Config.groovy
 *.class
 
 # Mobile Tools for Java (J2ME)
