@@ -69,26 +69,67 @@ class RestController {
 	//takes in JSON payload and parses it, throwing an error if the columns don't match up to schema
 	def processJSON () {
 		log.info('inside processJSON()')
-		def ex = '{"class":"unity.Users","id":2320,"accountBrand":null,"accountGoal":null,"accountRulesId":null,"accountType":null,"administrativePartner":null,"administrativePartnerAddress":null,"administrativePartnerCity":null,"administrativePartnerContactPerson":null,"administrativePartnerEmail":null,"administrativePartnerPhone":null,"administrativePartnerState":null,"administrativePartnerZipCode":null,"alertNotes":null,"alternateAddress":null,"alternateAddressType":null,"alternateCity":null,"alternateCountry":null,"alternateEmail":null,"alternatePhone":"","alternateState":null,"alternateZipCode":null,"banned":null,"childEarnUserId":null,"childRefToPrimParent":null,"country":"USA","county":"Marin","doNotCall":false,"doNotEmail":false,"doNotMail":null,"doNotMailReason":null,"dob":"1969-09-01T07:00:00Z","earnAccountClosedDate":null,"earnAccountClosedReason":null,"earnAccountDeadline":null,"earnAccountGoalReachedDate":null,"earnAccountOpenedDate":null,"earnAccountStatus":null,"earnUserId":null,"emailPrefCode":null,"emergencyContactId":7814,"emergencyContactType":"Friend","esssAccountExpired":false,"esssAccountLocked":false,"esssEmail":"s.saiga@aol.com","esssEmailConfirmCode":"cdvYcyZ3REKvH9r29yWn","esssEmailConfirmed":true,"esssEmailcodeDateReceived":null,"esssEmailcodeDateSent":"2014-08-07T07:00:00Z","esssEnabled":true,"esssPassword":"$2a$10$G4gQuNRvzQExA53OmmFE4eB2u3jFzU3pGHPVf2FAQgZhm0Czx5yEq","esssPasswordExpired":false,"externalAccountEnrollmentDate":null,"externalAccountId":null,"externalAccountProvider":null,"externalAccountRoutingNumber":null,"externalAccountType":null,"fax":"","firstName":"Sakiko","gender":"Female","homePhone":"4154972662","householdLanguageId":2,"idChecked":true,"idCheckedDate":null,"incentiveFunder1":null,"incentiveFunder1glNumber":null,"incentiveFunder1percent":null,"incentiveFunder2":null,"incentiveFunder2glNumber":null,"incentiveFunder2percent":null,"incentiveFunder3":null,"incentiveFunder3glNumber":null,"incentiveFunder3percent":null,"incentiveGroup":null,"isAccountFrozen":false,"isChild":false,"isEmergencyContact":false,"lastName":"Saiga","middleName":null,"mobilePhone":"4154972662","preferredAddress":"126 Ned\'s Way ","preferredAddressType":null,"preferredCity":"Tiburon","preferredState":"CA","preferredZipCode":"94920","salutation":null,"serviceableInCantonese":null,"serviceableInEnglish":true,"serviceableInSpanish":true,"softwareVersion":null,"spouseId":null,"ssnAes":[89,107,83,106,97,107,112,100,55,99,99,101,67,116,81,103,118,99,86,104,116,49,55,113,112,103,53,106,86,81,69,55,71,70,73,52,101,78,71,122,71,67,119,61],"ssnLastFour":"7443","ssnOrItin":"ssn","typeEnum":"fin_serv","typeSecondLevel":null,"vistashareAccountStatus":null,"vistashareAccountStatusDate":null,"vistashareChildFullName":null,"vistashareEmail":"s.saiga@aol.com","vistashareRole":"Client - CAM Spark Point, Client - EARN, IDA Client, Matched Savings Client, Prospective Client, Small business checking account user, TripleBoost Client","vistashareUserId":740480,"workPhone":""}'
-		JSONObject JSONmap = JSON.parse(ex)
-		for (Map.Entry<String, String> entry : JSONmap.entrySet()) {
+		//sample payload comin in, change a few fields
+		def ex = '{"class":"unity.Users","id":2320,"accountBrand":"TESTFIELD_Tripleboost","accountGoal":"TESTFIELD_Ca$hMon3y","accountRulesId":null,"accountType":null,"administrativePartner":null,"administrativePartnerAddress":null,"administrativePartnerCity":null,"administrativePartnerContactPerson":null,"administrativePartnerEmail":null,"administrativePartnerPhone":null,"administrativePartnerState":null,"administrativePartnerZipCode":null,"alertNotes":null,"alternateAddress":null,"alternateAddressType":null,"alternateCity":null,"alternateCountry":null,"alternateEmail":null,"alternatePhone":"","alternateState":null,"alternateZipCode":null,"banned":null,"childEarnUserId":null,"childRefToPrimParent":null,"country":"USA","county":"Marin","doNotCall":false,"doNotEmail":false,"doNotMail":null,"doNotMailReason":null,"dob":"1969-09-01T07:00:00Z","earnAccountClosedDate":null,"earnAccountClosedReason":null,"earnAccountDeadline":null,"earnAccountGoalReachedDate":null,"earnAccountOpenedDate":null,"earnAccountStatus":null,"emailPrefCode":null,"emergencyContactId":7814,"emergencyContactType":"Friend","esssAccountExpired":false,"esssAccountLocked":false,"esssEmail":"s.saiga@aol.com","esssEmailConfirmCode":"cdvYcyZ3REKvH9r29yWn","esssEmailConfirmed":true,"esssEmailcodeDateReceived":null,"esssEmailcodeDateSent":"2014-08-07T07:00:00Z","esssEnabled":true,"esssPassword":"$2a$10$G4gQuNRvzQExA53OmmFE4eB2u3jFzU3pGHPVf2FAQgZhm0Czx5yEq","esssPasswordExpired":false,"externalAccountEnrollmentDate":null,"externalAccountId":null,"externalAccountProvider":null,"externalAccountRoutingNumber":null,"externalAccountType":null,"fax":"","firstName":"Sakiko","gender":"Female","homePhone":"4154972662","householdLanguageId":2,"idChecked":true,"idCheckedDate":null,"incentiveFunder1":null,"incentiveFunder1glNumber":null,"incentiveFunder1percent":null,"incentiveFunder2":null,"incentiveFunder2glNumber":null,"incentiveFunder2percent":null,"incentiveFunder3":null,"incentiveFunder3glNumber":null,"incentiveFunder3percent":null,"incentiveGroup":null,"isAccountFrozen":false,"isChild":false,"isEmergencyContact":false,"lastName":"Saiga","middleName":null,"mobilePhone":"4154972662","preferredAddress":"126 Ned\'s Way ","preferredAddressType":null,"preferredCity":"Tiburon","preferredState":"CA","preferredZipCode":"94920","salutation":null,"serviceableInCantonese":null,"serviceableInEnglish":true,"serviceableInSpanish":true,"softwareVersion":null,"spouseId":null,"ssnAes":[89,107,83,106,97,107,112,100,55,99,99,101,67,116,81,103,118,99,86,104,116,49,55,113,112,103,53,106,86,81,69,55,71,70,73,52,101,78,71,122,71,67,119,61],"ssnLastFour":"7443","ssnOrItin":"ssn","typeEnum":"fin_serv","typeSecondLevel":null,"vistashareAccountStatus":null,"vistashareAccountStatusDate":null,"vistashareChildFullName":null,"vistashareEmail":"s.saiga@aol.com","vistashareRole":"Client - CAM Spark Point, Client - EARN, IDA Client, Matched Savings Client, Prospective Client, Small business checking account user, TripleBoost Client","vistashareUserId":740480,"workPhone":""}'
+		//def ex_target = '{"target":{"class":"unity.Users","id":2320,"accountBrand":null,"accountGoal":null,"accountRulesId":null,"accountType":null,"administrativePartner":null,"administrativePartnerAddress":null,"administrativePartnerCity":null,"administrativePartnerContactPerson":null,"administrativePartnerEmail":null,"administrativePartnerPhone":null,"administrativePartnerState":null,"administrativePartnerZipCode":null,"alertNotes":null,"alternateAddress":null,"alternateAddressType":null,"alternateCity":null,"alternateCountry":null,"alternateEmail":null,"alternatePhone":"","alternateState":null,"alternateZipCode":null,"banned":null,"childEarnUserId":null,"childRefToPrimParent":null,"country":"USA","county":"Marin","doNotCall":false,"doNotEmail":false,"doNotMail":null,"doNotMailReason":null,"dob":"1969-09-01T07:00:00Z","earnAccountClosedDate":null,"earnAccountClosedReason":null,"earnAccountDeadline":null,"earnAccountGoalReachedDate":null,"earnAccountOpenedDate":null,"earnAccountStatus":null,"earnUserId":null,"emailPrefCode":null,"emergencyContactId":7814,"emergencyContactType":"Friend","esssAccountExpired":false,"esssAccountLocked":false,"esssEmail":"s.saiga@aol.com","esssEmailConfirmCode":"cdvYcyZ3REKvH9r29yWn","esssEmailConfirmed":true,"esssEmailcodeDateReceived":null,"esssEmailcodeDateSent":"2014-08-07T07:00:00Z","esssEnabled":true,"esssPassword":"$2a$10$G4gQuNRvzQExA53OmmFE4eB2u3jFzU3pGHPVf2FAQgZhm0Czx5yEq","esssPasswordExpired":false,"externalAccountEnrollmentDate":null,"externalAccountId":null,"externalAccountProvider":null,"externalAccountRoutingNumber":null,"externalAccountType":null,"fax":"","firstName":"Sakiko","gender":"Female","homePhone":"4154972662","householdLanguageId":2,"idChecked":true,"idCheckedDate":null,"incentiveFunder1":null,"incentiveFunder1glNumber":null,"incentiveFunder1percent":null,"incentiveFunder2":null,"incentiveFunder2glNumber":null,"incentiveFunder2percent":null,"incentiveFunder3":null,"incentiveFunder3glNumber":null,"incentiveFunder3percent":null,"incentiveGroup":null,"isAccountFrozen":false,"isChild":false,"isEmergencyContact":false,"lastName":"Saiga","middleName":null,"mobilePhone":"4154972662","preferredAddress":"126 Ned\'s Way ","preferredAddressType":null,"preferredCity":"Tiburon","preferredState":"CA","preferredZipCode":"94920","salutation":null,"serviceableInCantonese":null,"serviceableInEnglish":true,"serviceableInSpanish":true,"softwareVersion":null,"spouseId":null,"ssnAes":[89,107,83,106,97,107,112,100,55,99,99,101,67,116,81,103,118,99,86,104,116,49,55,113,112,103,53,106,86,81,69,55,71,70,73,52,101,78,71,122,71,67,119,61],"ssnLastFour":"7443","ssnOrItin":"ssn","typeEnum":"fin_serv","typeSecondLevel":null,"vistashareAccountStatus":null,"vistashareAccountStatusDate":null,"vistashareChildFullName":null,"vistashareEmail":"s.saiga@aol.com","vistashareRole":"Client - CAM Spark Point, Client - EARN, IDA Client, Matched Savings Client, Prospective Client, Small business checking account user, TripleBoost Client","vistashareUserId":740480,"workPhone":""}}'
+		//JSONObject JSONmap = JSON.parse(ex)
+		//JSONObject t = JSON.parse(ex_target)
+//		for (Map.Entry<String, String> entry : t.entrySet()) {
+//			log.info(entry.getKey() + "/" + entry.getValue());
+//		}
+		//get list from "target" key, turns out to be another jsonObject
+		//def tList = t.get('target')
+		//log.info(tList.getClass())
+		//for (Map.Entry<String, String> entry: tList) {
 			//log.info(entry.getKey() + "/" + entry.getValue());
-		}
-		log.info(JSONmap.get('class'))
-		def curClass = grailsApplication.getClassForName(JSONmap.get('class'))
-		def JSONObj = new JSONObject(ex)
-		//curClass obj = new Object(JSONObj)
-		//log.info(obj.toString())
+		//}
+		compareDomains(ex)
 		
-		log.info(curClass.toString())
-		def obj1 = new Users(JSONObj)
-		def obj2 = curClass.getConstructor().newInstance()
-		//def obj = curClass.getConstructor().newInstance(JSONObj)
-		log.info(obj1.toString())
-		log.info(obj2.toString())
+		return
+		
+//		log.info(JSONmap.get('class'))
+//		def curClass = grailsApplication.getClassForName(JSONmap.get('class'))
+//		def JSONObj = new JSONObject(ex)
+//		//curClass obj = new Object(JSONObj)
+//		//log.info(obj.toString())
+//		
+//		log.info(curClass.toString())
+//		def obj1 = new Users(JSONObj)
+//		def obj2 = curClass.getConstructor().newInstance()
+//		//def obj = curClass.getConstructor().newInstance(JSONObj)
+//		log.info(obj1.toString())
+//		log.info(obj2.toString())
 	}
 	
-	def compareDomains(dom1, dom2) {
-		
+	//compares existing object from database with put request payload
+	//Strings?
+	def compareDomains(reqDom) {
+		JSONObject reqJSONObj = JSON.parse(reqDom)
+		def curClass = grailsApplication.getClassForName(reqJSONObj.get('class'))
+		def dbObj = curClass.findById(reqJSONObj.get('id'))
+		def dbJSONObjOld = new JSON(dbObj)
+		log.info("class type for new JSON: " + dbJSONObjOld.getClass())
+		def dbJSONObj = JSON.parse(dbJSONObjOld.toString())
+		log.info("class type for JSON.parse: " + dbJSONObj)
+		def curKey = ""
+		def curVal = ""
+		def reqVal = ""
+		for (Map.Entry<String, String> entry : dbJSONObj.entrySet()) {
+			//log.info(entry.getKey() + "/" + entry.getValue());
+			curKey = entry.getKey()
+			curVal = entry.getValue()
+			reqVal = reqJSONObj.get(curKey)
+			if (curVal != reqVal) log.info('diff, key: ' + curKey + ', val: ' + curVal + '/' + reqVal)
+		}
+		//log.info(dbObjStr.equals('{"class":"unity.Users","id":2320,"accountBrand":null,"accountGoal":null,"accountRulesId":null,"accountType":null,"administrativePartner":null,"administrativePartnerAddress":null,"administrativePartnerCity":null,"administrativePartnerContactPerson":null,"administrativePartnerEmail":null,"administrativePartnerPhone":null,"administrativePartnerState":null,"administrativePartnerZipCode":null,"alertNotes":null,"alternateAddress":null,"alternateAddressType":null,"alternateCity":null,"alternateCountry":null,"alternateEmail":null,"alternatePhone":"","alternateState":null,"alternateZipCode":null,"banned":null,"childEarnUserId":null,"childRefToPrimParent":null,"country":"USA","county":"Marin","doNotCall":false,"doNotEmail":false,"doNotMail":null,"doNotMailReason":null,"dob":"1969-09-01T07:00:00Z","earnAccountClosedDate":null,"earnAccountClosedReason":null,"earnAccountDeadline":null,"earnAccountGoalReachedDate":null,"earnAccountOpenedDate":null,"earnAccountStatus":null,"earnUserId":null,"emailPrefCode":null,"emergencyContactId":7814,"emergencyContactType":"Friend","esssAccountExpired":false,"esssAccountLocked":false,"esssEmail":"s.saiga@aol.com","esssEmailConfirmCode":"cdvYcyZ3REKvH9r29yWn","esssEmailConfirmed":true,"esssEmailcodeDateReceived":null,"esssEmailcodeDateSent":"2014-08-07T07:00:00Z","esssEnabled":true,"esssPassword":"$2a$10$G4gQuNRvzQExA53OmmFE4eB2u3jFzU3pGHPVf2FAQgZhm0Czx5yEq","esssPasswordExpired":false,"externalAccountEnrollmentDate":null,"externalAccountId":null,"externalAccountProvider":null,"externalAccountRoutingNumber":null,"externalAccountType":null,"fax":"","firstName":"Sakiko","gender":"Female","homePhone":"4154972662","householdLanguageId":2,"idChecked":true,"idCheckedDate":null,"incentiveFunder1":null,"incentiveFunder1glNumber":null,"incentiveFunder1percent":null,"incentiveFunder2":null,"incentiveFunder2glNumber":null,"incentiveFunder2percent":null,"incentiveFunder3":null,"incentiveFunder3glNumber":null,"incentiveFunder3percent":null,"incentiveGroup":null,"isAccountFrozen":false,"isChild":false,"isEmergencyContact":false,"lastName":"Saiga","middleName":null,"mobilePhone":"4154972662","preferredAddress":"126 Ned\'s Way ","preferredAddressType":null,"preferredCity":"Tiburon","preferredState":"CA","preferredZipCode":"94920","salutation":null,"serviceableInCantonese":null,"serviceableInEnglish":true,"serviceableInSpanish":true,"softwareVersion":null,"spouseId":null,"ssnAes":[89,107,83,106,97,107,112,100,55,99,99,101,67,116,81,103,118,99,86,104,116,49,55,113,112,103,53,106,86,81,69,55,71,70,73,52,101,78,71,122,71,67,119,61],"ssnLastFour":"7443","ssnOrItin":"ssn","typeEnum":"fin_serv","typeSecondLevel":null,"vistashareAccountStatus":null,"vistashareAccountStatusDate":null,"vistashareChildFullName":null,"vistashareEmail":"s.saiga@aol.com","vistashareRole":"Client - CAM Spark Point, Client - EARN, IDA Client, Matched Savings Client, Prospective Client, Small business checking account user, TripleBoost Client","vistashareUserId":740480,"workPhone":""}'))
+	}
+	
+	//gets rid of "target" in the beginning
+	//actually not needed lols
+	def removeTargetTag(String input) {
+		if (input.contains('{"target":')) {
+			//log.info(input[10..-2])
+			return input[10..-2]
+		} else return input
 	}
 }

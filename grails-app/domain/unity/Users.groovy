@@ -79,7 +79,7 @@ class Users {
 	Date earnAccountGoalReachedDate
 	Date earnAccountOpenedDate
 	String earnAccountStatus
-	Integer earnUserId
+	//Integer earnUserId
 	Date externalAccountEnrollmentDate
 	Long externalAccountId
 	String externalAccountProvider
@@ -184,7 +184,7 @@ class Users {
 		earnAccountGoalReachedDate nullable: true
 		earnAccountOpenedDate nullable: true
 		earnAccountStatus nullable: true, maxSize: 27
-		earnUserId nullable: true
+		//earnUserId nullable: true
 		externalAccountEnrollmentDate nullable: true
 		externalAccountId nullable: true, unique: true
 		externalAccountProvider nullable: true, maxSize: 32
