@@ -146,6 +146,7 @@ class RestController {
 		}
 	}
 	
+	
 	//gets rid of "target" in the beginning
 	//actually not needed lols
 	def removeTargetTag(String input) {
